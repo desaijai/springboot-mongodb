@@ -23,35 +23,35 @@ public class userController {
     userRepo repo;
 
     @PostMapping
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         user.setUid(service.generateId(User.GENERATE_SEQUENCE));
         return new ResponseEntity<>(repo.save(user), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<User> getAllUser(){
+    public List<User> getAllUser() {
         return repo.findAll();
     }
 
     @GetMapping("{uid}")
-    public ResponseEntity<User> getUserById(@PathVariable("uid") int uid){
-        return new ResponseEntity<>(repo.findById(uid).orElseThrow(()->new resourceNotFound("user","uid",uid)),HttpStatus.OK);
+    public ResponseEntity<User> getUserById(@PathVariable("uid") int uid) {
+        return new ResponseEntity<>(repo.findById(uid).orElseThrow(() -> new resourceNotFound("user", "uid", uid)), HttpStatus.OK);
     }
 
     @PutMapping("{uid}")
-    public ResponseEntity<User> updateUserById(@PathVariable("uid") int uid,@RequestBody User user){
-        User oldUser=repo.findById(uid).orElseThrow(()->new resourceNotFound("user","uid",uid));
+    public ResponseEntity<User> updateUserById(@PathVariable("uid") int uid, @RequestBody User user) {
+        User oldUser = repo.findById(uid).orElseThrow(() -> new resourceNotFound("user", "uid", uid));
         oldUser.setUname(user.getUname());
         oldUser.setUemail(user.getUpassword());
         oldUser.setUpassword(user.getUpassword());
         oldUser.setUpdateOn(user.getUpdateOn());
-        return new ResponseEntity<>(repo.save(oldUser),HttpStatus.OK);
+        return new ResponseEntity<>(repo.save(oldUser), HttpStatus.OK);
     }
 
     @DeleteMapping("{uid}")
-    public ResponseEntity<String> deleteUserById(@PathVariable("uid") int uid){
-        User user=repo.findById(uid).orElseThrow(()->new resourceNotFound("user","uid",uid));
+    public ResponseEntity<String> deleteUserById(@PathVariable("uid") int uid) {
+        User user = repo.findById(uid).orElseThrow(() -> new resourceNotFound("user", "uid", uid));
         repo.delete(user);
-        return new ResponseEntity<>("item deleted successfully!",HttpStatus.OK);
+        return new ResponseEntity<>("item deleted successfully!", HttpStatus.OK);
     }
 }
