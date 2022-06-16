@@ -7,17 +7,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Persistent;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "accounts")
-public class Accounts {
+@Data
+@Document(collection = "product")
+public class product {
 
     @Persistent
-    public static final String ACCOUNT_SEQUENCE="accounts_seq";
+    public static final String PRODUCTKEY_GENERATE="productkey";
 
     @Id
-    private int aid;
-    private String aname;
-
+    private int pid;
+    private String pro_name;
+    private int pro_qty;
+    private double pro_price;
 }

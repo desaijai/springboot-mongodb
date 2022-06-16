@@ -1,5 +1,6 @@
 package com.mongodb.userDetailsMongo.service;
 
+import com.mongodb.userDetailsMongo.model.Accounts;
 import com.mongodb.userDetailsMongo.model.User;
 
 import java.util.List;
@@ -16,4 +17,12 @@ public interface userService {
 
     public void deleteUser(int uid);
 
+    public List<User> findByUserName(String uname);
+
+    //account class crud
+    public List<Accounts> getAllAccounts();
+
+    public Accounts saveAccount(Accounts accounts);
+
+    public List<User> findByCityName(String cityName);
 }

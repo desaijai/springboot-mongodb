@@ -29,8 +29,9 @@ public class User {
     private String uname;
     private String upassword;
     private String uemail;
-
     private List<Accounts> uaccounts;
+    private Address uaddress;
+    private List<product> uproducts;
 
     @CreatedDate
     private LocalDateTime createdOn= LocalDateTime.now();

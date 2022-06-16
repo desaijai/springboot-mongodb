@@ -1,6 +1,7 @@
 package com.mongodb.userDetailsMongo.controller;
 
 import com.mongodb.userDetailsMongo.exception.resourceNotFound;
+import com.mongodb.userDetailsMongo.model.Accounts;
 import com.mongodb.userDetailsMongo.model.User;
 import com.mongodb.userDetailsMongo.model.dbSequence;
 import com.mongodb.userDetailsMongo.repository.userRepo;
@@ -16,25 +17,20 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/user")
 public class userController {
-
-    @Autowired
-    seqGenerateService service;
-
     @Autowired
     userService uservice;
 
-    @PostMapping
+    @PostMapping(consumes = {"application/json"})
     public ResponseEntity<User> saveUser(@RequestBody User user) {
-        user.setUid(service.generateId(User.GENERATE_SEQUENCE));
         return new ResponseEntity<>(uservice.saveUser(user), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping(produces = {"application/json"})
     public List<User> getAllUser() {
         return uservice.getAllUser();
     }
 
-    @GetMapping("{uid}")
+    @GetMapping(value = "{uid}",produces = {"application/json"})
     public ResponseEntity<User> getUserById(@PathVariable("uid") int uid) {
         return new ResponseEntity<>(uservice.findUserById(uid),HttpStatus.OK);
     }
@@ -49,4 +45,25 @@ public class userController {
         uservice.deleteUser(uid);
         return new ResponseEntity<>("item deleted successfully!", HttpStatus.OK);
     }
+
+    @GetMapping(value = "get/{uname}",produces = {"application/json"})
+    public List<User> findByUserName(@PathVariable("uname") String uname){
+        return uservice.findByUserName(uname);
+    }
+
+    @GetMapping("/accounts")
+    public List<Accounts> getAllAccounts(){
+        return uservice.getAllAccounts();
+    }
+
+    @PostMapping("/accounts")
+    public ResponseEntity<Accounts> saveAccount(@RequestBody Accounts accounts){
+        return new ResponseEntity<>(uservice.saveAccount(accounts),HttpStatus.OK);
+    }
+
+    @GetMapping("findBycity/{cityName}")
+    public List<User> findByCityName(@PathVariable("cityName") String cityName){
+        return uservice.findByCityName(cityName);
+    }
+
 }
