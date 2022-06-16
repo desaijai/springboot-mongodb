@@ -1,11 +1,7 @@
 package com.mongodb.userDetailsMongo.controller;
 
-import com.mongodb.userDetailsMongo.exception.resourceNotFound;
 import com.mongodb.userDetailsMongo.model.Accounts;
 import com.mongodb.userDetailsMongo.model.User;
-import com.mongodb.userDetailsMongo.model.dbSequence;
-import com.mongodb.userDetailsMongo.repository.userRepo;
-import com.mongodb.userDetailsMongo.service.seqGenerateService;
 import com.mongodb.userDetailsMongo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

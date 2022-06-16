@@ -1,4 +1,4 @@
-package com.mongodb.userDetailsMongo.service;
+package com.mongodb.userDetailsMongo.service.serviceImpl;
 
 import com.mongodb.userDetailsMongo.exception.resourceNotFound;
 import com.mongodb.userDetailsMongo.model.Accounts;
@@ -7,9 +7,9 @@ import com.mongodb.userDetailsMongo.model.User;
 import com.mongodb.userDetailsMongo.model.product;
 import com.mongodb.userDetailsMongo.repository.accountRepo;
 import com.mongodb.userDetailsMongo.repository.userRepo;
+import com.mongodb.userDetailsMongo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

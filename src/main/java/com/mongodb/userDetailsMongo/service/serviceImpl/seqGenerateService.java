@@ -1,4 +1,4 @@
-package com.mongodb.userDetailsMongo.service;
+package com.mongodb.userDetailsMongo.service.serviceImpl;
 
 import com.mongodb.userDetailsMongo.model.dbSequence;
 import org.springframework.beans.factory.annotation.Autowired;
