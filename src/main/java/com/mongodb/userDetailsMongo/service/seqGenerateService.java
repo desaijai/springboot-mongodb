@@ -31,5 +31,4 @@ public class seqGenerateService {
 
         return !Objects.isNull(counter)?counter.getSeq():1;
     }
-
 }
