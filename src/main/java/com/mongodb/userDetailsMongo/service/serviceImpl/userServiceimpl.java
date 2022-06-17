@@ -1,5 +1,6 @@
 package com.mongodb.userDetailsMongo.service.serviceImpl;
 
+import com.mongodb.userDetailsMongo.dto.userdto;
 import com.mongodb.userDetailsMongo.exception.resourceNotFound;
 import com.mongodb.userDetailsMongo.model.Accounts;
 import com.mongodb.userDetailsMongo.model.Address;
@@ -11,7 +12,9 @@ import com.mongodb.userDetailsMongo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class userServiceimpl implements userService {
@@ -85,6 +88,17 @@ public class userServiceimpl implements userService {
     @Override
     public List<User> findByCityName(String cityName) {
         return repo.findByCityName(cityName);
+    }
+    @Override
+    public List<User> saveBulkOfUser(List<User> users){
+        users.forEach((element)->{
+            element.setUid(serviceGenerator.generateId(User.GENERATE_SEQUENCE));
+            element.getUaddress().setAid(serviceGenerator.generateId(Address.ADDRESSKEY_GENERATE));
+            element.getUproducts().forEach((element1) -> {
+                element1.setPid(serviceGenerator.generateId(product.PRODUCTKEY_GENERATE));
+            });
+        });
+        return repo.saveAll(users);
     }
 
 }

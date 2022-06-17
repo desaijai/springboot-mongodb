@@ -1,5 +1,6 @@
 package com.mongodb.userDetailsMongo.service;
 
+import com.mongodb.userDetailsMongo.dto.userdto;
 import com.mongodb.userDetailsMongo.model.Accounts;
 import com.mongodb.userDetailsMongo.model.User;
 
@@ -25,4 +26,6 @@ public interface userService {
     public Accounts saveAccount(Accounts accounts);
 
     public List<User> findByCityName(String cityName);
+
+    public List<User> saveBulkOfUser(List<User> users);
 }

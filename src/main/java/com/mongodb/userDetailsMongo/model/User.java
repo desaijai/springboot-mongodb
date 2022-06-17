@@ -39,4 +39,5 @@ public class User {
     @LastModifiedDate
     private LocalDateTime updateOn=LocalDateTime.now();
 
+
 }
