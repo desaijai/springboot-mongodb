@@ -60,7 +60,7 @@ public class userServiceimpl implements userService {
         oldUser.setUaddress(user.getUaddress());
         oldUser.setUproducts(user.getUproducts());
         oldUser.setUpdateOn(user.getUpdateOn());
-        return oldUser;
+        return repo.save(oldUser);
     }
 
     @Override
@@ -89,9 +89,10 @@ public class userServiceimpl implements userService {
     public List<User> findByCityName(String cityName) {
         return repo.findByCityName(cityName);
     }
+
     @Override
-    public List<User> saveBulkOfUser(List<User> users){
-        users.forEach((element)->{
+    public List<User> saveBulkOfUser(List<User> users) {
+        users.forEach((element) -> {
             element.setUid(serviceGenerator.generateId(User.GENERATE_SEQUENCE));
             element.getUaddress().setAid(serviceGenerator.generateId(Address.ADDRESSKEY_GENERATE));
             element.getUproducts().forEach((element1) -> {
